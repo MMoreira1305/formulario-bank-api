@@ -2,10 +2,12 @@ package com.example.formulario_api.controller;
 
 import com.example.formulario_api.services.EnvioEmailService;
 import com.example.formulario_api.services.TokenService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Token controller", description = "Token Controller")
 @RestController
 @RequestMapping("/token")
 public class TokenController {

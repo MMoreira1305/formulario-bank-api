@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS token_email (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(50),
+    token VARCHAR(6)
+);

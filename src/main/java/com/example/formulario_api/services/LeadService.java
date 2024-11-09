@@ -29,15 +29,8 @@ public class LeadService {
 
     public String cadastrar(LeadDTO lead){
         String token = this.tokenService.gerarToken();
-        var tokenEmailBanco = this.tokenEmailRepository.findByEmail(lead.email());
-
-        if(tokenEmailBanco!= null){
-            this.tokenEmailRepository.delete(tokenEmailBanco);
-        }
-
+        // Verificando se já existe token enviado, se sim, deletar
         this.leadRepository.save(new Lead(lead));
-
-        this.tokenEmailRepository.save(new TokenEmail(null, lead.email(), token));
         this.envioEmail.enviarEmail(lead.email(), "Segue token de verificação de conta!", token);
         return token;
     }

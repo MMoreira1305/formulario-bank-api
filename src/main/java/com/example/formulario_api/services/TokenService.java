@@ -1,7 +1,5 @@
 package com.example.formulario_api.services;
 
-import com.example.formulario_api.domain.model.TokenEmail;
-import com.example.formulario_api.exception.ErrorResponse;
 import com.example.formulario_api.exception.ValidacaoException;
 import com.example.formulario_api.repository.TokenEmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,8 @@ public class TokenService {
 
     public String getTokenByEmail(String email) {
         try {
-            return this.repository.findByEmail(email).getToken();
+            var tk = this.repository.findByEmail(email);
+            return tk.getToken();
         } catch (Exception e){
             throw new ValidacaoException(e.getMessage());
         }
@@ -25,8 +24,12 @@ public class TokenService {
 
     public void confirmToken(String email) {
         try{
-            TokenEmail tokenEmail = new TokenEmail(null, email, null);
-            repository.save(tokenEmail);
+            var tokenRegister = repository.findByEmail(email);
+            if(tokenRegister == null){
+                throw new ValidacaoException("Não foi enviado token para este email! Tente reenviar.");
+            }
+            tokenRegister.setToken(null);
+            repository.save(tokenRegister);
         }catch (Exception e){
             throw new ValidacaoException(e.getMessage());
         }

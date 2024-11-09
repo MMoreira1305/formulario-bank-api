@@ -17,7 +17,7 @@ public class TokenController {
     private EnvioEmailService envioEmailService;
 
     @GetMapping("/{email}")
-    public ResponseEntity<?> returnToken(@PathVariable String email){
+    public ResponseEntity<?> verifyToken(@PathVariable String email){
         return ResponseEntity.ok(tokenService.getTokenByEmail(email));
     }
 

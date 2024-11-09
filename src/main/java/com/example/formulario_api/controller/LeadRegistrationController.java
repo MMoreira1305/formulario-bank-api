@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/lead")
-public class CadastroLeadController {
+public class LeadRegistrationController {
 
     @Autowired
     private LeadService leadService;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/lead/obterDados")
-public class ObterInformacoesLeadController {
+public class GetLeadDataController {
 
     @Autowired
     private LeadService leadService;
